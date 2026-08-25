@@ -35,7 +35,6 @@ form.addEventListener('submit', (e) => {
   const body = encodeURIComponent(
     `Name: ${name}\nPhone: ${phone}\nProject Type: ${projectType}\nMessage: ${message}`
   );
-  // TEMP TEST ADDRESS — revert to stepriseconstruction@gmail.com before going live
-  window.location.href = `mailto:kaleemfairy@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:stepriseconstruction@gmail.com?subject=${subject}&body=${body}`;
   note.textContent = "Opening your email app to send this enquiry...";
 });
