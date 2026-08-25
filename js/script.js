@@ -2,12 +2,24 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const navToggle = document.getElementById('navToggle');
 const mainNav = document.getElementById('mainNav');
-navToggle.addEventListener('click', () => {
-  const isOpen = mainNav.classList.toggle('open');
+const navBackdrop = document.getElementById('navBackdrop');
+
+function setNavOpen(isOpen) {
+  mainNav.classList.toggle('open', isOpen);
+  navBackdrop.classList.toggle('open', isOpen);
   navToggle.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+navToggle.addEventListener('click', () => {
+  setNavOpen(!mainNav.classList.contains('open'));
 });
+navBackdrop.addEventListener('click', () => setNavOpen(false));
 mainNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => mainNav.classList.remove('open'));
+  link.addEventListener('click', () => setNavOpen(false));
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') setNavOpen(false);
 });
 
 const form = document.getElementById('contactForm');
